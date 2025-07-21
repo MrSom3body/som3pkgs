@@ -45,5 +45,7 @@
         inherit inputs;
         inherit pkgs;
       });
+
+    homeManagerModules = import ./modules/home {inherit outputs;};
   };
 }

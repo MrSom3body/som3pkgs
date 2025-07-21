@@ -1,8 +1,7 @@
 # 📦 som3pkgs
 
 You can find all my custom packages in this repo to import them into your flake.
-Some also provide custom modules (soon™) if it makes sense (can be seen in the
-table).
+Some also provide custom modules if it makes sense (can be seen in the table).
 
 | Package           | Use                                                                                                                          | Module |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------- | :----: |

@@ -11,6 +11,7 @@ Some also provide custom modules if it makes sense (can be seen in the table).
 | `gns3-auto-confg` | Automatically create basic configuration files for cisco devices                                                             |   ❌   |
 | `hyprcast`        | Record your screen with wl-screenrec with notification support (most useful when run with a key bind)                        |   ❌   |
 | `power-monitor`   | Automatically switch between power-saver and performance mode when plugging or unplugging your laptop (copied from @fufexan) |   ✅   |
+| `touchpad-toggle` | Toggle your touchpad on Hyprland                                                                                             |   ❌   |
 | `wl-ocr`          | OCR your screen on wayland                                                                                                   |   ❌   |
 
 ## 🚀 Using them

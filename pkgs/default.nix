@@ -5,5 +5,6 @@
   gns3-auto-conf = pkgs.callPackage ./gns3-auto-conf {};
   hyprcast = pkgs.callPackage ./hyprcast {};
   power-monitor = pkgs.callPackage ./power-monitor {};
+  touchpad-toggle = pkgs.callPackage ./touchpad-toggle {};
   wl-ocr = pkgs.callPackage ./wl-ocr {};
 }

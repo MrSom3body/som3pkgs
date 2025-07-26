@@ -1,13 +1,16 @@
-{outputs}: {
+{ outputs }:
+{
   lib,
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.services.auto-kbd-bl;
-in {
+in
+{
   options.services.auto-kbd-bl = {
     enable = mkEnableOption "the auto keyboard backlight service";
   };
@@ -24,7 +27,7 @@ in {
         Restart = "on-failure";
       };
 
-      Install.WantedBy = ["default.target"];
+      Install.WantedBy = [ "default.target" ];
     };
   };
 }

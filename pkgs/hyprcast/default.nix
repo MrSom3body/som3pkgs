@@ -8,32 +8,33 @@
   procps,
   wireplumber,
   wl-screenrec,
-}: let
+}:
+let
   name = "hyprcast";
 in
-  stdenv.mkDerivation {
-    inherit name;
+stdenv.mkDerivation {
+  inherit name;
 
-    src = ./.;
+  src = ./.;
 
-    nativeBuildInputs = [makeWrapper];
+  nativeBuildInputs = [ makeWrapper ];
 
-    installPhase = ''
-      install -Dm755 $src/${name}.fish $out/bin/${name}
-    '';
+  installPhase = ''
+    install -Dm755 $src/${name}.fish $out/bin/${name}
+  '';
 
-    fixupPhase = ''
-      wrapProgram $out/bin/${name} --set PATH ${
-        lib.makeBinPath [
-          coreutils
-          fish
-          libnotify
-          procps
-          wireplumber
-          wl-screenrec
-        ]
-      }
-    '';
+  fixupPhase = ''
+    wrapProgram $out/bin/${name} --set PATH ${
+      lib.makeBinPath [
+        coreutils
+        fish
+        libnotify
+        procps
+        wireplumber
+        wl-screenrec
+      ]
+    }
+  '';
 
-    meta.mainProgram = name;
-  }
+  meta.mainProgram = name;
+}

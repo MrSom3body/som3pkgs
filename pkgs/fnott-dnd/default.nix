@@ -9,33 +9,34 @@
   procps,
   ripgrep,
   systemd,
-}: let
+}:
+let
   name = "fnott-dnd";
 in
-  stdenv.mkDerivation {
-    inherit name;
+stdenv.mkDerivation {
+  inherit name;
 
-    src = ./.;
+  src = ./.;
 
-    nativeBuildInputs = [makeWrapper];
+  nativeBuildInputs = [ makeWrapper ];
 
-    installPhase = ''
-      install -Dm755 $src/${name}.fish $out/bin/${name}
-    '';
+  installPhase = ''
+    install -Dm755 $src/${name}.fish $out/bin/${name}
+  '';
 
-    fixupPhase = ''
-      wrapProgram $out/bin/${name} --set PATH ${
-        lib.makeBinPath [
-          coreutils
-          fish
-          fnott
-          libnotify
-          procps
-          ripgrep
-          systemd
-        ]
-      }
-    '';
+  fixupPhase = ''
+    wrapProgram $out/bin/${name} --set PATH ${
+      lib.makeBinPath [
+        coreutils
+        fish
+        fnott
+        libnotify
+        procps
+        ripgrep
+        systemd
+      ]
+    }
+  '';
 
-    meta.mainProgram = name;
-  }
+  meta.mainProgram = name;
+}

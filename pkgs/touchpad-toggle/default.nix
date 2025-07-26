@@ -5,29 +5,30 @@
   coreutils,
   fish,
   ripgrep,
-}: let
+}:
+let
   name = "touchpad-toggle";
 in
-  stdenv.mkDerivation {
-    inherit name;
+stdenv.mkDerivation {
+  inherit name;
 
-    src = ./.;
+  src = ./.;
 
-    nativeBuildInputs = [makeWrapper];
+  nativeBuildInputs = [ makeWrapper ];
 
-    installPhase = ''
-      install -Dm755 $src/${name}.fish $out/bin/${name}
-    '';
+  installPhase = ''
+    install -Dm755 $src/${name}.fish $out/bin/${name}
+  '';
 
-    fixupPhase = ''
-      wrapProgram $out/bin/${name} --prefix PATH : ${
-        lib.makeBinPath [
-          coreutils
-          fish
-          ripgrep
-        ]
-      }
-    '';
+  fixupPhase = ''
+    wrapProgram $out/bin/${name} --prefix PATH : ${
+      lib.makeBinPath [
+        coreutils
+        fish
+        ripgrep
+      ]
+    }
+  '';
 
-    meta.mainProgram = name;
-  }
+  meta.mainProgram = name;
+}

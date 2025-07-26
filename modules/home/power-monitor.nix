@@ -1,13 +1,16 @@
-{outputs}: {
+{ outputs }:
+{
   lib,
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
   inherit (lib) mkEnableOption;
   cfg = config.services.power-monitor;
-in {
+in
+{
   options.services.power-monitor = {
     enable = mkEnableOption "the power-monitor service";
   };
@@ -16,7 +19,7 @@ in {
     systemd.user.services.power-monitor = {
       Unit = {
         Description = "Power Monitor";
-        After = ["power-profiles-daemon.service"];
+        After = [ "power-profiles-daemon.service" ];
       };
 
       Service = {
@@ -25,7 +28,7 @@ in {
         Restart = "on-failure";
       };
 
-      Install.WantedBy = ["default.target"];
+      Install.WantedBy = [ "default.target" ];
     };
   };
 }

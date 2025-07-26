@@ -17,7 +17,7 @@ stdenv.mkDerivation {
 
   src = ./scripts;
 
-  nativeBuildInputs = [makeWrapper];
+  nativeBuildInputs = [ makeWrapper ];
 
   installPhase = ''
     mkdir -p $out/bin
@@ -29,18 +29,18 @@ stdenv.mkDerivation {
   fixupPhase = ''
     for script in $out/bin/*; do
       wrapProgram "$script" --prefix PATH : ${
-      lib.makeBinPath [
-        bemoji
-        cliphist
-        fd
-        fish
-        fuzzel
-        jq
-        wl-clipboard
-        wtype
-        xdg-utils
-      ]
-    }
+        lib.makeBinPath [
+          bemoji
+          cliphist
+          fd
+          fish
+          fuzzel
+          jq
+          wl-clipboard
+          wtype
+          xdg-utils
+        ]
+      }
     done
   '';
 }

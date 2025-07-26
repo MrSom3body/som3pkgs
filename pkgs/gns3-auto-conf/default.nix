@@ -6,28 +6,30 @@
   fish,
   fzf,
   jq,
-}:
-stdenv.mkDerivation rec {
+}: let
   name = "gns3-auto-conf";
+in
+  stdenv.mkDerivation {
+    inherit name;
 
-  src = ./.;
+    src = ./.;
 
-  nativeBuildInputs = [makeWrapper];
+    nativeBuildInputs = [makeWrapper];
 
-  installPhase = ''
-    install -Dm755 $src/${name}.fish $out/bin/${name}
-  '';
+    installPhase = ''
+      install -Dm755 $src/${name}.fish $out/bin/${name}
+    '';
 
-  fixupPhase = ''
-    wrapProgram $out/bin/${name} --set PATH ${
-      lib.makeBinPath [
-        coreutils
-        fish
-        fzf
-        jq
-      ]
-    }
-  '';
+    fixupPhase = ''
+      wrapProgram $out/bin/${name} --set PATH ${
+        lib.makeBinPath [
+          coreutils
+          fish
+          fzf
+          jq
+        ]
+      }
+    '';
 
-  meta.mainProgram = name;
-}
+    meta.mainProgram = name;
+  }

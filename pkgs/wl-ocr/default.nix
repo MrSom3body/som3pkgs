@@ -9,30 +9,32 @@
   slurp,
   tesseract,
   wl-clipboard,
-}:
-stdenv.mkDerivation rec {
+}: let
   name = "wl-ocr";
+in
+  stdenv.mkDerivation {
+    inherit name;
 
-  src = ./.;
+    src = ./.;
 
-  nativeBuildInputs = [makeWrapper];
+    nativeBuildInputs = [makeWrapper];
 
-  installPhase = ''
-    install -Dm755 $src/${name}.fish $out/bin/${name}
-  '';
+    installPhase = ''
+      install -Dm755 $src/${name}.fish $out/bin/${name}
+    '';
 
-  fixupPhase = ''
-    wrapProgram $out/bin/${name} --set PATH ${
-      lib.makeBinPath [
-        fish
-        grim
-        libnotify
-        slurp
-        tesseract
-        wl-clipboard
-      ]
-    }
-  '';
+    fixupPhase = ''
+      wrapProgram $out/bin/${name} --set PATH ${
+        lib.makeBinPath [
+          fish
+          grim
+          libnotify
+          slurp
+          tesseract
+          wl-clipboard
+        ]
+      }
+    '';
 
-  meta.mainProgram = name;
-}
+    meta.mainProgram = name;
+  }

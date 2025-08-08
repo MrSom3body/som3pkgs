@@ -20,7 +20,7 @@ set prevProfile $AC_PROFILE
 set prevStatus Charging
 
 # initial run
-echo >~/.battery
+echo >$XDG_RUNTIME_DIR/battery
 if test "$currentStatus" = Discharging
     set profile $BAT_PROFILE
 else
@@ -56,20 +56,20 @@ while true
 
     set currentCapacity (cat "$BAT_CAP")
     if test $currentCapacity -gt 30
-        echo >~/.battery
+        echo >$XDG_RUNTIME_DIR/battery
     else
         if test $currentCapacity -le 10
-            test (cat ~/.battery) != 10 &&
+            test (cat $XDG_RUNTIME_DIR/battery) != 10 &&
                 notify-send -a power-monitor -u critical "Battery Critical" "Battery level is at 10%! Plug in immediately!"
-            echo 10 >~/.battery
+            echo 10 >$XDG_RUNTIME_DIR/battery
         else if test $currentCapacity -le 20
-            test (cat ~/.battery) != 20 &&
+            test (cat $XDG_RUNTIME_DIR/battery) != 20 &&
                 notify-send -a power-monitor -u critical "Battery Very Low" "Battery level is at 20%"
-            echo 20 >~/.battery
+            echo 20 >$XDG_RUNTIME_DIR/battery
         else if test $currentCapacity -le 30
-            test (cat ~/.battery) != 30 &&
+            test (cat $XDG_RUNTIME_DIR/battery) != 30 &&
                 notify-send -a power-monitor -u critical "Battery Low" "Battery level is at 30%"
-            echo 30 >~/.battery
+            echo 30 >$XDG_RUNTIME_DIR/battery
         end
     end
 

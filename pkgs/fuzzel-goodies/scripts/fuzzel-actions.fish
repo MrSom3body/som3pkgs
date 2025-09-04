@@ -12,7 +12,7 @@ switch (string split -f 2 " " $choice)
     case Lock
         loginctl lock-session
     case Suspend
-        systemctl suspend
+        systemctl suspend-then-hibernate || systemctl suspend
     case Exit
         uwsm stop
     case Reboot

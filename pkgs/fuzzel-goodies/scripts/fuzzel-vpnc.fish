@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 if pgrep vpnc &>/dev/null
-    set selection (echo -en "yes\nno" | fuzzel --dmenu --prompt "󰖂 " --placeholder "Do you want to disconnect from the currenct VPN?")
+    set selection (echo -en "yes\nno" | fuzzel --dmenu  --placeholder "Do you want to disconnect from the currenct VPN?")
     switch $selection
         case yes
             pkexec vpnc-disconnect
@@ -13,7 +13,7 @@ else
         set selections "$(basename $file .conf)\n$selections"
     end
 
-    set selection (echo -en $selections | fuzzel --dmenu --prompt "󰖂 " --placeholder "Search for vpnc VPNs...")
+    set selection (echo -en $selections | fuzzel --dmenu --placeholder "Search for vpnc VPNs...")
 
     if test "$selection" != ""
         pkexec vpnc $selection &&

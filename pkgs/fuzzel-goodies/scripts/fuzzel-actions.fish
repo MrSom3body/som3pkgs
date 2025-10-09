@@ -7,7 +7,7 @@ set choices " Lock
  Poweroff
  Hibernate
 󱄅 Update"
-set choice (echo -en $choices | fuzzel --dmenu --prompt " " --placeholder "Search for system actions..." --lines 5)
+set choice (echo -en $choices | fuzzel --dmenu --placeholder "Search for system actions..." --lines 5)
 
 switch (string split -f 2 " " $choice)
     case Lock
